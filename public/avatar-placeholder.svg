@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <clipPath id="avatar-circle">
+      <circle cx="100" cy="100" r="100" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#avatar-circle)">
+    <!-- soft lavender backdrop -->
+    <circle cx="100" cy="100" r="100" fill="hsl(250, 92%, 85%)" />
+    <circle cx="100" cy="100" r="78" fill="hsl(250, 80%, 78%)" opacity="0.5" />
+
+    <!-- hoodie / shoulders -->
+    <path d="M30 205 Q30 144 100 144 Q170 144 170 205 Z" fill="hsl(250, 69%, 61%)" />
+    <path d="M70 152 Q100 170 130 152 L130 205 L70 205 Z" fill="hsl(250, 57%, 53%)" />
+    <!-- hood drawstrings -->
+    <line x1="88" y1="160" x2="88" y2="182" stroke="hsl(250, 92%, 85%)" stroke-width="3" stroke-linecap="round" />
+    <line x1="112" y1="160" x2="112" y2="182" stroke="hsl(250, 92%, 85%)" stroke-width="3" stroke-linecap="round" />
+
+    <!-- neck -->
+    <path d="M87 122 L113 122 L113 148 Q100 156 87 148 Z" fill="#e0a872" />
+    <path d="M87 122 L113 122 L113 132 Q100 140 87 132 Z" fill="#cf945e" />
+
+    <!-- ears -->
+    <circle cx="63" cy="96" r="7" fill="#e8b27c" />
+    <circle cx="137" cy="96" r="7" fill="#e8b27c" />
+
+    <!-- face -->
+    <path d="M64 88 Q64 52 100 52 Q136 52 136 88 L136 100 Q136 134 100 134 Q64 134 64 100 Z" fill="#edbb87" />
+
+    <!-- hair -->
+    <path d="M60 96 Q56 40 100 38 Q144 40 140 96 L136 96 Q138 66 118 60 Q108 72 84 66 Q66 70 64 96 Z" fill="#241d35" />
+
+    <!-- brows -->
+    <path d="M76 84 Q84 80 92 84" stroke="#241d35" stroke-width="3.5" fill="none" stroke-linecap="round" />
+    <path d="M108 84 Q116 80 124 84" stroke="#241d35" stroke-width="3.5" fill="none" stroke-linecap="round" />
+
+    <!-- glasses -->
+    <g stroke="hsl(250, 57%, 38%)" stroke-width="3" fill="none">
+      <rect x="72" y="90" width="22" height="16" rx="7" />
+      <rect x="106" y="90" width="22" height="16" rx="7" />
+      <line x1="94" y1="96" x2="106" y2="96" />
+    </g>
+
+    <!-- eyes -->
+    <circle cx="83" cy="98" r="3" fill="#241d35" />
+    <circle cx="117" cy="98" r="3" fill="#241d35" />
+
+    <!-- nose + smile -->
+    <path d="M100 102 Q97 110 101 112" stroke="#cf945e" stroke-width="2.5" fill="none" stroke-linecap="round" />
+    <path d="M90 120 Q100 127 110 120" stroke="#b97a4d" stroke-width="3" fill="none" stroke-linecap="round" />
+  </g>
+</svg>
