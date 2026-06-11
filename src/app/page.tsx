@@ -1,103 +1,64 @@
-import Image from "next/image";
+import { getPortfolioData } from "@/lib/data";
+import { Header } from "@/components/public/Header";
+import { Hero } from "@/components/public/Hero";
+import { About, type Stat } from "@/components/public/About";
+import { Skills } from "@/components/public/Skills";
+import { Qualification } from "@/components/public/Qualification";
+import { Projects } from "@/components/public/Projects";
+import { Certificates } from "@/components/public/Certificates";
+import { Contact } from "@/components/public/Contact";
+import { Footer } from "@/components/public/Footer";
+import { ScrollUp } from "@/components/public/ScrollUp";
 
-export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+export const revalidate = 60;
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+const YEAR_MS = 365.25 * 24 * 60 * 60 * 1000;
+
+function pad(n: number) {
+  return String(n).padStart(2, "0");
+}
+
+export default async function HomePage() {
+  const data = await getPortfolioData();
+  const { profile } = data;
+
+  if (!profile) {
+    return (
+      <main className="section container-site">
+        <h1 className="section-title">Portfolio not set up yet</h1>
+        <p className="mt-4 text-center">
+          Run <code>npx prisma db seed</code> to populate the database.
+        </p>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    );
+  }
+
+  const minStart = data.experiences.length
+    ? Math.min(...data.experiences.map((e) => e.startDate.getTime()))
+    : Date.now();
+  const years = Math.max(1, Math.floor((Date.now() - minStart) / YEAR_MS));
+  const stats: Stat[] = [
+    { value: `${pad(years)}+`, label: "Years experience" },
+    { value: `${pad(data.projects.length)}+`, label: "Completed projects" },
+    { value: `${pad(data.experiences.length)}+`, label: "Companies worked" },
+  ];
+
+  const firstName = profile.name.split(" ")[0];
+
+  return (
+    <>
+      <Header name={firstName} />
+      <main className="md:pt-18">
+        <Hero profile={profile} socialLinks={data.socialLinks} />
+        <About profile={profile} stats={stats} />
+        <Skills skills={data.skills} />
+        <Qualification experiences={data.experiences} education={data.education} />
+        <Projects projects={data.projects} />
+        <Certificates certificates={data.certificates} />
+        <Contact profile={profile} socialLinks={data.socialLinks} />
+      </main>
+      <Footer profile={profile} socialLinks={data.socialLinks} />
+      <ScrollUp />
+    </>
   );
 }
