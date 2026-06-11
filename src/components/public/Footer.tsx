@@ -12,7 +12,7 @@ export function Footer({
     <footer className="bg-first-second">
       <div className="container-site grid gap-8 py-12 md:grid-cols-3 md:items-start">
         <div>
-          <h1 className="text-h1 text-white">{profile.name}</h1>
+          <h1 className="text-h1 text-white!">{profile.name}</h1>
           <span className="text-small text-white/80">{profile.headline}</span>
         </div>
 
