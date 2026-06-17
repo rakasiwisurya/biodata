@@ -11,9 +11,9 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Rakasiwi Surya — Fullstack Developer",
+  title: "Rakasiwi Surya — Software Engineer",
   description:
-    "Fullstack Developer | React JS | Next JS | Node JS | Express JS | React Native | .Net Core | AI Enthusiast | Go Fiber",
+    "Software Engineer | React JS | Next JS | Node JS | Express JS | React Native | .Net Core | AI Enthusiast | Go Fiber",
 };
 
 export default function RootLayout({

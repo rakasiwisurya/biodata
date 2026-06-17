@@ -11,11 +11,11 @@ import type { PortfolioData } from "./types";
 export const defaultData: PortfolioData = {
   profile: {
     name: "Rakasiwi Surya",
-    headline: "Fullstack Developer",
+    headline: "Software Engineer",
     heroDescription:
-      "Fullstack Developer with 4+ years of experience building web and mobile applications with React JS, Next JS, Node JS, Express JS, React Native, .Net Core, and Go Fiber. AI Enthusiast.",
+      "Software Engineer with 4+ years of experience building web and mobile applications with React JS, Next JS, Node JS, Express JS, React Native, .Net Core, and Go Fiber. AI Enthusiast.",
     aboutDescription:
-      "Fullstack Developer experienced in delivering enterprise, government, and healthcare applications — from ticketing platforms and smart warehouse IoT systems to HRIS, finance, and medical record applications. Comfortable owning both frontend and backend, migrating legacy systems, containerizing deployments with Docker and CI/CD, and collaborating closely with stakeholders to turn business requirements into scalable technical solutions. Ready to relocate overseas.",
+      "Software Engineer experienced in delivering enterprise, government, and healthcare applications — from ticketing platforms and smart warehouse IoT systems to HRIS, finance, and medical record applications. Comfortable owning both frontend and backend, migrating legacy systems, containerizing deployments with Docker and CI/CD, and collaborating closely with stakeholders to turn business requirements into scalable technical solutions. Ready to relocate overseas.",
     avatarUrl: "/profile.png",
     cvUrl: "/cv/CV_Rakasiwi_Surya.pdf",
     email: "rakasiwi.surya@gmail.com",
@@ -32,12 +32,12 @@ export const defaultData: PortfolioData = {
     {
       id: "exp-cipta",
       company: "PT. Cipta Integrasi Nusantara",
-      position: "Frontend Developer",
+      position: "Technical Lead (Frontend Developer)",
       location: "Remote",
-      startDate: "2025-12-29",
-      endDate: "2026-01-29",
+      startDate: "2025-07-21",
+      endDate: "2026-03-21",
       summary:
-        "Frontend development for Medora, a hospital management system, focusing on bug fixing, localization, and adaptation for hospital tenders in Timor-Leste.",
+        "Led frontend development for Medora, a hospital management system — bridging frontend and backend teams on API integration, driving technical decisions on UI and state management, and directing localization and non-BPJS adaptation for hospital tenders in Timor-Leste.",
       order: 0,
     },
     {
@@ -65,7 +65,7 @@ export const defaultData: PortfolioData = {
     {
       id: "exp-nutech",
       company: "PT. Nutech Integrasi (Telkom Group)",
-      position: "ReactJS Developer",
+      position: "ReactJS Developer / Technical Lead (Acting)",
       location: "Jakarta, Indonesia",
       startDate: "2022-01-03",
       endDate: "2024-01-02",
@@ -82,15 +82,19 @@ export const defaultData: PortfolioData = {
       description:
         "Medora is a hospital management system supporting multiple roles — Administrators, Nurses (Emergency, Outpatient, Inpatient), Doctors, Pharmacy staff, and Admission officers. It integrates doctor schedules, SOAP medical documentation, nursing services, medical equipment tracking, patient medical records, and prescription handling forwarded to the pharmacy, ensuring a smooth patient journey from registration through consultation, treatment, and counter services.",
       responsibilities: [
-        "Performed bug fixing and system troubleshooting to ensure application stability, accuracy, and reliability across all hospital management modules",
-        "Translated application content and medical terminology from Indonesian into English, aligned with international healthcare practices",
-        "Conducted system localization and adaptation by removing BPJS-related components and workflows for hospital tenders in Timor-Leste",
-        "Adjusted business processes and system configurations to support non-BPJS healthcare environments",
+        "Led frontend development efforts for the Medora application, ensuring scalable architecture, maintainable code structure, and alignment with project requirements",
+        "Acted as a bridge between frontend and backend teams, coordinating API integration and enabling parallel development to accelerate delivery timelines",
+        "Drove technical decisions on UI implementation, component structure, and state management to improve performance and usability",
+        "Maintained hands-on contribution by implementing features, resolving complex bugs, and ensuring high code quality across modules",
+        "Oversaw system stability and troubleshooting, proactively identifying and resolving issues to ensure reliability in critical healthcare workflows",
+        "Led localization and internationalization efforts, translating medical terminology and application content into standardized English aligned with global healthcare practices",
+        "Directed system adaptation for non-BPJS environments, removing and redesigning workflows to meet regulatory and operational requirements for Timor-Leste hospital tenders",
+        "Collaborated with stakeholders and cross-functional teams to align business requirements with technical solutions, ensuring smooth delivery and user acceptance",
       ],
-      techStack: ["TypeScript", "React JS", "dayjs", "Radix UI"],
+      techStack: ["TypeScript", "React JS", "Express JS", "dayjs", "Radix UI", "PostgreSQL"],
       teamSize: 7,
-      periodStart: "2025-12-01",
-      periodEnd: "2026-01-29",
+      periodStart: "2025-07-01",
+      periodEnd: "2026-03-21",
       imageUrl: "",
       demoUrl: "",
       repoUrl: "",

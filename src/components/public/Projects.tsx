@@ -44,7 +44,7 @@ export function Projects({ projects }: { projects: Project[] }) {
                     className="w-full self-start rounded-lg shadow-md"
                   />
                 ) : (
-                  <div className="flex aspect-video items-center justify-center self-start rounded-lg bg-gradient-to-br from-first to-first-alt">
+                  <div className="flex aspect-video items-center justify-center self-start rounded-lg bg-linear-to-br from-first to-first-alt">
                     <LuCode className="text-5xl text-white/80" />
                   </div>
                 )}
