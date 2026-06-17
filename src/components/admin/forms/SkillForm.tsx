@@ -9,7 +9,7 @@ import {
   skillSchema,
   type SkillFormValues,
 } from "@/lib/validation";
-import { saveSkill } from "@/lib/actions/skills";
+import { saveSkill } from "@/lib/adminData";
 import { Field, inputCls } from "@/components/admin/ui";
 
 export function SkillForm({
@@ -34,7 +34,6 @@ export function SkillForm({
     const result = await saveSkill(id, values);
     if (result.ok) {
       router.push("/admin/skills");
-      router.refresh();
     } else {
       setServerError(result.error);
     }

@@ -1,14 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Static export so the app can be served on Firebase Hosting's free Spark plan.
+  output: "export",
+  trailingSlash: true,
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "s3.arcxora.com",
-        pathname: "/biodata/**",
-      },
-    ],
+    // Required for static export: Next's image optimizer is server-side.
+    unoptimized: true,
   },
 };
 

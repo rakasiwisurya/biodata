@@ -1,4 +1,4 @@
-import type { Profile, SocialLink } from "@prisma/client";
+import type { Profile, SocialLink } from "@/lib/types";
 import { LuArrowDown, LuMouse, LuSend } from "react-icons/lu";
 import { SocialIcon } from "./SocialIcon";
 
@@ -42,10 +42,12 @@ export function Hero({
             <g mask="url(#heroBlobMask)">
               <path d={BLOB_PATH} />
               <image
-                x="12"
-                y="18"
-                width="176"
-                href={profile.avatarUrl ?? "/avatar-placeholder.svg"}
+                x="0"
+                y="0"
+                width="200"
+                height="187"
+                preserveAspectRatio="xMidYMid slice"
+                href={profile.avatarUrl || "/profile.png"}
               />
             </g>
           </svg>

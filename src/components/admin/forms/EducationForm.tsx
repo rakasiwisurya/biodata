@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { educationSchema, type EducationFormValues } from "@/lib/validation";
-import { saveEducation } from "@/lib/actions/education";
+import { saveEducation } from "@/lib/adminData";
 import { Field, inputCls } from "@/components/admin/ui";
 
 export function EducationForm({
@@ -30,7 +30,6 @@ export function EducationForm({
     const result = await saveEducation(id, values);
     if (result.ok) {
       router.push("/admin/education");
-      router.refresh();
     } else {
       setServerError(result.error);
     }

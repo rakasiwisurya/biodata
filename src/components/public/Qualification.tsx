@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { Education, WorkExperience } from "@prisma/client";
+import type { Education, WorkExperience } from "@/lib/types";
 import { LuBriefcase, LuCalendar, LuGraduationCap } from "react-icons/lu";
 import { formatPeriod } from "@/lib/format";
 

@@ -9,7 +9,7 @@ import {
   certificateSchema,
   type CertificateFormValues,
 } from "@/lib/validation";
-import { saveCertificate } from "@/lib/actions/certificates";
+import { saveCertificate } from "@/lib/adminData";
 import { Field, inputCls } from "@/components/admin/ui";
 
 export function CertificateForm({
@@ -34,7 +34,6 @@ export function CertificateForm({
     const result = await saveCertificate(id, values);
     if (result.ok) {
       router.push("/admin/certificates");
-      router.refresh();
     } else {
       setServerError(result.error);
     }

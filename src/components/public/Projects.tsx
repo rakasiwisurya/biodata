@@ -1,6 +1,6 @@
 "use client";
 
-import type { Project } from "@prisma/client";
+import type { Project } from "@/lib/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import {
@@ -16,11 +16,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-export type ProjectWithCompany = Project & {
-  workExperience: { company: string } | null;
-};
-
-export function Projects({ projects }: { projects: ProjectWithCompany[] }) {
+export function Projects({ projects }: { projects: Project[] }) {
   if (projects.length === 0) return null;
 
   return (
@@ -57,9 +53,9 @@ export function Projects({ projects }: { projects: ProjectWithCompany[] }) {
                   <h3 className="mb-2 text-h3">{project.title}</h3>
 
                   <div className="mb-3 flex flex-wrap gap-x-4 gap-y-1 text-smaller text-text-light">
-                    {project.workExperience && (
+                    {project.company && (
                       <span className="flex items-center gap-1">
-                        <LuBriefcase /> {project.workExperience.company}
+                        <LuBriefcase /> {project.company}
                       </span>
                     )}
                     {(project.periodStart || project.periodEnd) && (

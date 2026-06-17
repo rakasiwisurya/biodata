@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import Link from "next/link";
 import { LuArrowDown, LuArrowUp, LuPencil, LuTrash2 } from "react-icons/lu";
@@ -18,13 +17,11 @@ export function RowActions({
   isFirst?: boolean;
   isLast?: boolean;
 }) {
-  const router = useRouter();
   const [pending, startTransition] = useTransition();
 
   function run(fn: () => Promise<void>) {
     startTransition(async () => {
       await fn();
-      router.refresh();
     });
   }
 

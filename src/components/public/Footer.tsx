@@ -1,4 +1,4 @@
-import type { Profile, SocialLink } from "@prisma/client";
+import type { Profile, SocialLink } from "@/lib/types";
 import { SocialIcon } from "./SocialIcon";
 
 export function Footer({

@@ -1,4 +1,4 @@
-import type { Profile, SocialLink } from "@prisma/client";
+import type { Profile, SocialLink } from "@/lib/types";
 import { LuMail, LuMapPin, LuPhone } from "react-icons/lu";
 import { SocialIcon } from "./SocialIcon";
 

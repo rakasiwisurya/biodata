@@ -5,26 +5,23 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { projectSchema, type ProjectFormValues } from "@/lib/validation";
-import { saveProject } from "@/lib/actions/projects";
+import { saveProject } from "@/lib/adminData";
 import { Field, inputCls } from "@/components/admin/ui";
-import { FileUpload } from "@/components/admin/FileUpload";
 
 export function ProjectForm({
   id,
   defaultValues,
-  experienceOptions,
+  companyOptions,
 }: {
   id: string | null;
   defaultValues: ProjectFormValues;
-  experienceOptions: { id: string; label: string }[];
+  companyOptions: string[];
 }) {
   const router = useRouter();
   const [serverError, setServerError] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
     formState: { errors, isSubmitting },
   } = useForm<ProjectFormValues>({
     resolver: zodResolver(projectSchema),
@@ -35,7 +32,6 @@ export function ProjectForm({
     const result = await saveProject(id, values);
     if (result.ok) {
       router.push("/admin/projects");
-      router.refresh();
     } else {
       setServerError(result.error);
     }
@@ -46,13 +42,18 @@ export function ProjectForm({
       <Field label="Title" error={errors.title?.message}>
         <input className={inputCls} {...register("title")} />
       </Field>
+      <Field label="Company (optional)" error={errors.company?.message}>
+        <input className={inputCls} list="company-options" {...register("company")} />
+        <datalist id="company-options">
+          {companyOptions.map((c) => (
+            <option key={c} value={c} />
+          ))}
+        </datalist>
+      </Field>
       <Field label="Description" error={errors.description?.message}>
         <textarea rows={5} className={inputCls} {...register("description")} />
       </Field>
-      <Field
-        label="Responsibilities (one per line)"
-        error={errors.responsibilities?.message}
-      >
+      <Field label="Responsibilities (one per line)" error={errors.responsibilities?.message}>
         <textarea rows={6} className={inputCls} {...register("responsibilities")} />
       </Field>
       <Field label="Tech stack (comma separated)" error={errors.techStack?.message}>
@@ -73,35 +74,22 @@ export function ProjectForm({
           <input type="date" className={inputCls} {...register("periodEnd")} />
         </Field>
       </div>
-      <Field label="Related work experience" error={errors.workExperienceId?.message}>
-        <select className={inputCls} {...register("workExperienceId")}>
-          <option value="">— None —</option>
-          {experienceOptions.map((opt) => (
-            <option key={opt.id} value={opt.id}>
-              {opt.label}
-            </option>
-          ))}
-        </select>
-      </Field>
-      <Field label="Project image">
-        <FileUpload
-          folder="projects"
-          label="image"
-          accept="image/*"
-          value={watch("imageUrl") ?? ""}
-          onChange={(url) => setValue("imageUrl", url, { shouldDirty: true })}
-        />
+      <Field label="Project image URL (optional)" error={errors.imageUrl?.message}>
+        <input className={inputCls} placeholder="https://…" {...register("imageUrl")} />
+        <p className="mt-1 text-smaller text-text-light">
+          Leave empty to show a styled placeholder.
+        </p>
       </Field>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Demo URL (optional)" error={errors.demoUrl?.message}>
-          <input className={inputCls} placeholder="https://..." {...register("demoUrl")} />
+          <input className={inputCls} placeholder="https://…" {...register("demoUrl")} />
         </Field>
         <Field label="Repository URL (optional)" error={errors.repoUrl?.message}>
-          <input className={inputCls} placeholder="https://github.com/..." {...register("repoUrl")} />
+          <input className={inputCls} placeholder="https://github.com/…" {...register("repoUrl")} />
         </Field>
       </div>
       <label className="flex items-center gap-2 text-small text-title">
-        <input type="checkbox" className="accent-(--first-color)" {...register("featured")} />
+        <input type="checkbox" className="accent-first" {...register("featured")} />
         Featured project
       </label>
 

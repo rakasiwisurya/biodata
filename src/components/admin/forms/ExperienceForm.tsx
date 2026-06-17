@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { experienceSchema, type ExperienceFormValues } from "@/lib/validation";
-import { saveExperience } from "@/lib/actions/experiences";
+import { saveExperience } from "@/lib/adminData";
 import { Field, inputCls } from "@/components/admin/ui";
 
 export function ExperienceForm({
@@ -30,7 +30,6 @@ export function ExperienceForm({
     const result = await saveExperience(id, values);
     if (result.ok) {
       router.push("/admin/experiences");
-      router.refresh();
     } else {
       setServerError(result.error);
     }

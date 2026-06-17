@@ -1,5 +1,6 @@
-import type { Profile } from "@prisma/client";
-import { LuDownload } from "react-icons/lu";
+import Link from "next/link";
+import type { Profile } from "@/lib/types";
+import { LuDownload, LuFileText } from "react-icons/lu";
 
 export type Stat = { value: string; label: string };
 
@@ -23,13 +24,19 @@ export function About({ profile, stats }: { profile: Profile; stats: Stat[] }) {
           ))}
         </div>
 
-        {profile.cvUrl && (
-          <div className="flex justify-center">
+        <div className="flex flex-wrap justify-center gap-4">
+          {profile.cvUrl && (
             <a href={profile.cvUrl} target="_blank" rel="noreferrer" className="button">
               Download CV <LuDownload />
             </a>
-          </div>
-        )}
+          )}
+          <Link
+            href="/cv"
+            className="inline-flex items-center gap-2 rounded-lg border border-first px-4 py-3 font-medium text-first transition-colors hover:bg-first hover:text-white"
+          >
+            View CV Page <LuFileText />
+          </Link>
+        </div>
       </div>
     </section>
   );

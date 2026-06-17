@@ -165,6 +165,20 @@ h4 {
   background-color: var(--first-color-alt);
 }
 
+/* ===== Print (ATS CV page) ===== */
+@media print {
+  @page {
+    margin: 14mm;
+  }
+  html,
+  body {
+    background: #ffffff !important;
+  }
+  .print-hidden {
+    display: none !important;
+  }
+}
+
 /* ===== Swiper theming ===== */
 .projects-swiper {
   --swiper-theme-color: var(--first-color);

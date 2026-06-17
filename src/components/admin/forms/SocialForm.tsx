@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { socialSchema, type SocialFormValues } from "@/lib/validation";
-import { saveSocial } from "@/lib/actions/socials";
+import { saveSocial } from "@/lib/adminData";
 import { Field, inputCls } from "@/components/admin/ui";
 
 export function SocialForm({
@@ -30,7 +30,6 @@ export function SocialForm({
     const result = await saveSocial(id, values);
     if (result.ok) {
       router.push("/admin/socials");
-      router.refresh();
     } else {
       setServerError(result.error);
     }

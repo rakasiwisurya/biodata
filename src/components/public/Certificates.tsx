@@ -1,4 +1,4 @@
-import type { Certificate } from "@prisma/client";
+import type { Certificate } from "@/lib/types";
 import { LuAward, LuExternalLink, LuTrophy } from "react-icons/lu";
 
 export function Certificates({ certificates }: { certificates: Certificate[] }) {

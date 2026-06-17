@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { Skill, SkillCategory } from "@prisma/client";
+import type { Skill, SkillCategory } from "@/lib/types";
 import {
   LuChevronDown,
   LuCloud,

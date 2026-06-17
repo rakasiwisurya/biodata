@@ -32,7 +32,9 @@ export function AdminNav() {
       <ul className="flex gap-1 md:flex-col">
         {LINKS.map(({ href, label, icon: Icon }) => {
           const active =
-            href === "/admin" ? pathname === "/admin" : pathname.startsWith(href);
+            href === "/admin"
+              ? pathname === "/admin" || pathname === "/admin/"
+              : pathname.startsWith(href);
           return (
             <li key={href} className="shrink-0">
               <Link

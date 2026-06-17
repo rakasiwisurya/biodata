@@ -1,27 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { profileSchema, type ProfileFormValues } from "@/lib/validation";
-import { saveProfile } from "@/lib/actions/profile";
+import { saveProfile } from "@/lib/adminData";
 import { Field, inputCls } from "@/components/admin/ui";
-import { FileUpload } from "@/components/admin/FileUpload";
 
 export function ProfileForm({
   defaultValues,
 }: {
   defaultValues: ProfileFormValues;
 }) {
-  const router = useRouter();
   const [status, setStatus] = useState<"idle" | "saved" | "error">("idle");
   const [serverError, setServerError] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
     formState: { errors, isSubmitting },
   } = useForm<ProfileFormValues>({
     resolver: zodResolver(profileSchema),
@@ -33,7 +28,6 @@ export function ProfileForm({
     const result = await saveProfile(values);
     if (result.ok) {
       setStatus("saved");
-      router.refresh();
     } else {
       setStatus("error");
       setServerError(result.error);
@@ -46,11 +40,7 @@ export function ProfileForm({
         <input className={inputCls} {...register("name")} />
       </Field>
       <Field label="Headline" error={errors.headline?.message}>
-        <input
-          className={inputCls}
-          placeholder="Fullstack Developer"
-          {...register("headline")}
-        />
+        <input className={inputCls} placeholder="Fullstack Developer" {...register("headline")} />
       </Field>
       <Field label="Hero description" error={errors.heroDescription?.message}>
         <textarea rows={3} className={inputCls} {...register("heroDescription")} />
@@ -69,32 +59,32 @@ export function ProfileForm({
       <Field label="Location" error={errors.location?.message}>
         <input className={inputCls} {...register("location")} />
       </Field>
-      <Field label="Avatar (hero photo / illustration)">
-        <FileUpload
-          folder="avatar"
-          label="avatar"
-          accept="image/*"
-          value={watch("avatarUrl") ?? ""}
-          onChange={(url) => setValue("avatarUrl", url, { shouldDirty: true })}
+      <Field label="Avatar URL" error={errors.avatarUrl?.message}>
+        <input
+          className={inputCls}
+          placeholder="/profile.png or https://…"
+          {...register("avatarUrl")}
         />
+        <p className="mt-1 text-smaller text-text-light">
+          Defaults to the bundled illustration. Paste an image URL to use your own photo.
+        </p>
       </Field>
-      <Field label="CV (PDF)">
-        <FileUpload
-          folder="cv"
-          label="CV"
-          accept="application/pdf"
-          value={watch("cvUrl") ?? ""}
-          onChange={(url) => setValue("cvUrl", url, { shouldDirty: true })}
+      <Field label="CV PDF URL" error={errors.cvUrl?.message}>
+        <input
+          className={inputCls}
+          placeholder="/cv/CV_Rakasiwi_Surya.pdf or https://…"
+          {...register("cvUrl")}
         />
+        <p className="mt-1 text-smaller text-text-light">
+          Defaults to the bundled CV PDF. Replace <code>public/cv/</code> or paste a URL.
+        </p>
       </Field>
 
       <div className="flex items-center gap-4">
         <button type="submit" disabled={isSubmitting} className="button px-4 py-2.5 text-small disabled:opacity-50">
           {isSubmitting ? "Saving..." : "Save profile"}
         </button>
-        {status === "saved" && (
-          <span className="text-small text-green-600">Saved ✓</span>
-        )}
+        {status === "saved" && <span className="text-small text-green-600">Saved ✓</span>}
         {status === "error" && serverError && (
           <span className="text-small text-red-500">{serverError}</span>
         )}

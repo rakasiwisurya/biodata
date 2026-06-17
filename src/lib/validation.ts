@@ -80,7 +80,7 @@ export const projectSchema = z.object({
   demoUrl: optionalString,
   repoUrl: optionalString,
   featured: z.boolean(),
-  workExperienceId: optionalString,
+  company: optionalString,
 });
 export type ProjectFormValues = z.infer<typeof projectSchema>;
 
