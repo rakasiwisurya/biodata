@@ -38,7 +38,7 @@ export async function saveProfile(values: unknown): Promise<ActionResult> {
     heroDescription: v.heroDescription,
     aboutDescription: v.aboutDescription,
     avatarUrl: str(v.avatarUrl) || existing.avatarUrl || "/profile.png",
-    cvUrl: str(v.cvUrl) || existing.cvUrl || "/cv/CV_Rakasiwi_Surya.pdf",
+    cvUrl: str(v.cvUrl) || existing.cvUrl || "https://drive.google.com/file/d/1nUhW_W0RWScAdF7tlZXbGPwQfWzwr_cz/view?usp=sharing",
     email: v.email,
     phone: str(v.phone),
     location: str(v.location),

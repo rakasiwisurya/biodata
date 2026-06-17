@@ -69,14 +69,15 @@ export function ProfileForm({
           Defaults to the bundled illustration. Paste an image URL to use your own photo.
         </p>
       </Field>
-      <Field label="CV PDF URL" error={errors.cvUrl?.message}>
+      <Field label="CV link (Google Drive / PDF URL)" error={errors.cvUrl?.message}>
         <input
           className={inputCls}
-          placeholder="/cv/CV_Rakasiwi_Surya.pdf or https://…"
+          placeholder="https://drive.google.com/file/d/…/view"
           {...register("cvUrl")}
         />
         <p className="mt-1 text-smaller text-text-light">
-          Defaults to the bundled CV PDF. Replace <code>public/cv/</code> or paste a URL.
+          Paste a public link to your CV (e.g. a Google Drive “Anyone with the
+          link” share URL). The “Download CV” button opens it in a new tab.
         </p>
       </Field>
 

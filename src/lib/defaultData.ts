@@ -17,7 +17,7 @@ export const defaultData: PortfolioData = {
     aboutDescription:
       "Software Engineer experienced in delivering enterprise, government, and healthcare applications — from ticketing platforms and smart warehouse IoT systems to HRIS, finance, and medical record applications. Comfortable owning both frontend and backend, migrating legacy systems, containerizing deployments with Docker and CI/CD, and collaborating closely with stakeholders to turn business requirements into scalable technical solutions. Ready to relocate overseas.",
     avatarUrl: "/profile.png",
-    cvUrl: "/cv/CV_Rakasiwi_Surya.pdf",
+    cvUrl: "https://drive.google.com/file/d/1nUhW_W0RWScAdF7tlZXbGPwQfWzwr_cz/view?usp=sharing",
     email: "rakasiwi.surya@gmail.com",
     phone: "+6285715519890",
     location: "Bekasi, Jawa Barat, Indonesia (Ready to relocate overseas)",
