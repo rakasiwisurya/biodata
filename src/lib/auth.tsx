@@ -7,8 +7,10 @@ import {
   useState,
 } from "react";
 import {
+  getRedirectResult,
   onAuthStateChanged,
   signInWithPopup,
+  signInWithRedirect,
   signOut as fbSignOut,
   type User,
 } from "firebase/auth";
@@ -42,6 +44,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setLoading(false);
       return;
     }
+    // Surface any error coming back from a redirect-based sign-in.
+    getRedirectResult(auth).catch((e) => console.error("Sign-in redirect error:", e));
     return onAuthStateChanged(auth, (u) => {
       setUser(u);
       setLoading(false);
@@ -51,7 +55,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   async function signIn() {
     const auth = getFirebaseAuth();
     if (!auth) throw new Error("Firebase not configured");
-    await signInWithPopup(auth, googleProvider);
+    try {
+      await signInWithPopup(auth, googleProvider);
+    } catch (e) {
+      const code = (e as { code?: string })?.code ?? "";
+      // Popup got blocked or isn't supported here — fall back to a full redirect.
+      if (
+        code === "auth/popup-blocked" ||
+        code === "auth/cancelled-popup-request" ||
+        code === "auth/operation-not-supported-in-this-environment"
+      ) {
+        await signInWithRedirect(auth, googleProvider);
+        return;
+      }
+      throw e;
+    }
   }
 
   async function signOut() {
